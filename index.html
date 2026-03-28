@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEDD Luxury Homes | Luxury, Simplified.</title>
+    
+    <!-- Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                navy: '#0A1F1C', // Change this
+                    gold: '#D4AF37', // Change this
+                    bone: '#F8F9F5', // Change this
+                },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Reveal Animation Engine */
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1); 
+        }
+        .reveal.active { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        /* Staggered Delays */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-500 { transition-delay: 500ms; }
+        .delay-700 { transition-delay: 700ms; }
+
+        /* Ticker Animation */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: 200%;
+            animation: marquee 25s linear infinite;
+        }
+
+        .step-number {
+            -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+            color: transparent;
+        }
+    </style>
+</head>
+
+<body class="bg-navy text-bone antialiased overflow-x-hidden">
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-[100] px-6 py-5 transition-all duration-500 bg-navy/20 backdrop-blur-md border-b border-white/5" id="navbar">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+        
+        <!-- LOGO AREA -->
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gold flex items-center justify-center rounded-sm shadow-xl shadow-gold/10">
+                <span class="text-navy font-black text-xs tracking-tighter">TEDD</span>
+            </div>
+            <div class="hidden sm:block">
+                <span class="block font-black text-xl leading-none text-white uppercase tracking-tighter">TEDD LUXURY</span>
+            </div>
+        </div>
+
+        <!-- DESKTOP LINKS - UPDATED TO MATCH YOUR SECTIONS -->
+        <div class="hidden lg:flex items-center gap-10 text-[10px] font-black uppercase tracking-[0.4em]">
+            <a href="#hero" class="text-white hover:text-gold transition-colors">Home</a>
+            <a href="#about" class="text-white/50 hover:text-gold transition-colors">Profile</a>
+            <a href="#services" class="text-white/50 hover:text-gold transition-colors">Services</a>
+            <a href="#protocol" class="text-white/50 hover:text-gold transition-colors">Protocol</a>
+            <a href="#tiers" class="text-white/50 hover:text-gold transition-colors">Tiers</a>
+        </div>
+
+        <!-- ACTION AREA -->
+        <div class="flex items-center gap-3 md:gap-5">
+            <div class="h-4 w-[1px] bg-white/10 hidden md:block"></div>
+            
+            <a href="https://wa.me/8123153391" target="_blank" class="bg-gold text-navy px-6 md:px-8 py-2.5 md:py-3 rounded-sm font-black text-[9px] md:text-[10px] uppercase tracking-[0.2em] hover:bg-white transition-all duration-300">
+                WhatsApp Inquiry
+            </a>
+
+            <!-- HAMBURGER -->
+            <button id="menu-toggle" class="lg:hidden flex flex-col gap-1.5 p-2 focus:outline-none z-[110]">
+                <span id="line1" class="w-6 h-0.5 bg-white transition-all duration-300"></span>
+                <span id="line2" class="w-6 h-0.5 bg-white transition-all duration-300"></span>
+                <span id="line3" class="w-4 h-0.5 bg-gold transition-all duration-300 ml-auto"></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu" class="fixed inset-0 z-[95] bg-navy/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-10 transition-all duration-500 translate-x-full lg:hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/5 font-black text-[30vw] select-none tracking-tighter pointer-events-none">TEDD</div>
+    
+    <div class="flex flex-col items-center gap-8 relative z-10">
+        <a href="#hero" class="mobile-link text-2xl font-black text-white uppercase tracking-[0.4em]">Home</a>
+        <a href="#about" class="mobile-link text-2xl font-black text-white/40 uppercase tracking-[0.4em] hover:text-gold transition-colors">Profile</a>
+        <a href="#services" class="mobile-link text-2xl font-black text-white/40 uppercase tracking-[0.4em] hover:text-gold transition-colors">Services</a>
+        <a href="#protocol" class="mobile-link text-2xl font-black text-white/40 uppercase tracking-[0.4em] hover:text-gold transition-colors">Protocol</a>
+        <a href="#tiers" class="mobile-link text-2xl font-black text-white/40 uppercase tracking-[0.4em] hover:text-gold transition-colors">Tiers</a>
+        
+        <div class="mt-6 h-[1px] w-12 bg-gold/30"></div>
+        <p class="text-[9px] text-white/20 font-bold uppercase tracking-[0.5em]">Lagos • Abuja • Nigeria</p>
+    </div>
+</div>
+
+    <main>
+        <!-- 01: HERO SECTION -->
+       <section id="hero" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none select-none opacity-[0.02]">
+        <span class="text-[35vw] font-black leading-none">TEDD</span>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+        
+        <div class="lg:col-span-6 space-y-10 order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <div class="space-y-4">
+                <div class="flex items-center gap-3 reveal delay-100 justify-center lg:justify-start">
+                    <span class="text-gold text-[10px] font-black uppercase tracking-[0.5em]">Lagos • Abuja • Nigeria</span>
+                </div>
+                
+                <h1 class="text-6xl md:text-8xl font-black text-white uppercase leading-[0.9] tracking-tighter reveal delay-300">
+                    Luxury, <br>
+                    <span class="text-gold tracking-tight">Simplified.</span>
+                </h1>
+                
+                <p class="text-white/50 text-sm md:text-base max-w-md font-medium leading-relaxed uppercase tracking-widest reveal delay-500">
+                    Modern real estate advisory & brokerage. We provide verified opportunities for the strategic investor.
+                </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 reveal delay-700 w-full sm:w-auto">
+                <a href="https://wa.me/8123153391" class="group flex items-center justify-center lg:justify-between gap-8 bg-gold px-8 py-5 rounded-sm transition-all hover:bg-white active:scale-95">
+                    <span class="text-navy font-black text-[11px] uppercase tracking-[0.2em]">Contact on WhatsApp</span>
+                    <iconify-icon icon="solar:whatsapp-bold" class="text-navy text-xl"></iconify-icon>
+                </a>
+            </div>
+        </div>
+
+        <div class="lg:col-span-6 order-1 lg:order-2 relative h-[350px] md:h-[600px] w-full reveal">
+            <div class="absolute inset-0 border border-white/5 p-4 rounded-sm rotate-1 lg:rotate-3 group hover:rotate-0 transition-transform duration-700">
+                <div class="relative h-full w-full overflow-hidden rounded-sm transition-all duration-1000">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974" 
+                         alt="Luxury Modern Architecture" 
+                         class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-navy/10"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+        <!-- 02: AUTHORITY MARQUEE -->
+        <div class="py-8 mt-8 bg-white/5 border-y border-white/5 overflow-hidden">
+            <div class="animate-marquee whitespace-nowrap">
+                <div class="flex gap-20 px-10 text-[10px] font-black uppercase tracking-[0.4em] text-white/30">
+                    <span>Verified Residential Assets</span>
+                    <span>Commercial Advisory</span>
+                    <span>Institutional Standards</span>
+                    <span>Global Portfolio Management</span>
+                    <!-- Repeat for seamless loop -->
+                    <span>Verified Residential Assets</span>
+                    <span>Commercial Advisory</span>
+                    <span>Institutional Standards</span>
+                    <span>Global Portfolio Management</span>
+                </div>
+            </div>
+        </div>
+
+
+        <section id="about" class="py-32 px-6 bg-navy relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end mb-20">
+            <div class="lg:col-span-8 reveal">
+                <h2 class="text-gold text-[10px] font-black uppercase tracking-[0.8em] mb-6">Company Profile</h2>
+                <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9]">
+                    Simplifying <br> <span class="text-white/40">Global Real Estate.</span>
+                </h3>
+            </div>
+            <div class="lg:col-span-4 reveal delay-300">
+                <p class="text-white/60 text-sm uppercase tracking-widest leading-relaxed">
+                    Modern real estate advisory focused on institutional-grade acquisition and strategic brokerage.
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <div class="md:col-span-2 bg-white/[0.03] border border-white/5 p-10 rounded-sm reveal">
+                <iconify-icon icon="solar:shield-check-bold-duotone" class="text-gold text-4xl mb-6"></iconify-icon>
+                <p class="text-xl md:text-2xl font-medium text-white/90 leading-relaxed mb-8">
+                    TEDD Luxury Homes is a modern real estate advisory and brokerage firm focused on <span class="text-gold font-black">simplifying property acquisition</span> across residential, commercial, and industrial sectors.
+                </p>
+                <div class="flex flex-wrap gap-10 border-t border-white/5 pt-8">
+                    <div>
+                        <span class="block text-2xl font-black text-white uppercase">Residential</span>
+                        <span class="text-[9px] text-white/30 uppercase tracking-widest font-black">Prime Living</span>
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-black text-white uppercase">Commercial</span>
+                        <span class="text-[9px] text-white/30 uppercase tracking-widest font-black">Institutional</span>
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-black text-white uppercase">Industrial</span>
+                        <span class="text-[9px] text-white/30 uppercase tracking-widest font-black">Strategic</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gold p-10 rounded-sm flex flex-col justify-between reveal delay-500">
+                <iconify-icon icon="solar:graph-up-bold-duotone" class="text-navy text-5xl"></iconify-icon>
+                <div class="space-y-4">
+                    <h4 class="text-navy font-black text-xl uppercase leading-none">Profitable Decisioning</h4>
+                    <p class="text-navy/70 text-xs font-bold uppercase tracking-wider leading-relaxed">
+                        We provide clients with verified opportunities, structured processes, and clear guidance to ensure secure property decisions.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="services" class="py-32 px-6 bg-navy relative overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.01] pointer-events-none select-none" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj48ZyBmaWxsPSIjRkZGRkZGIiBmaWxsLW9wYWNpdHk9IjAuNSI+PHBhdGggZD0iTTAgMGg4MHY4MEgwVjB6bTgwIDQwaC04MHYtNDBoODB2NDB6bTAtNDBILTgwVjB6bTQwIDQwSDAwVjgwSDBWNDB6Ii8+PC9nPjwvc3ZnPg=='); background-size: 80px 80px;"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <div class="lg:col-span-5 lg:sticky lg:top-32 space-y-12 reveal">
+            <div>
+                <h2 class="text-gold text-[10px] font-black uppercase tracking-[0.8em] mb-4">Our Services</h2>
+                <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9]">
+                    Institutional <br> <span class="text-white/40 italic font-serif lowercase tracking-tight">Grade Advisory</span>
+                </h3>
+            </div>
+            
+            <p class="text-white/50 text-sm uppercase tracking-widest leading-relaxed max-w-sm">
+                Simplifying property decisions across every critical sector of the African real estate landscape.
+            </p>
+
+            <div id="service-list" class="space-y-6 pt-10 border-t border-white/5">
+                
+                <button class="service-trigger group flex items-center gap-6 text-left w-full active" data-service="residential">
+                    <span class="service-icon text-gold/30 group-hover:text-gold text-4xl font-black step-number transition-all duration-500">01</span>
+                    <div>
+                        <span class="block text-xl font-black text-white group-hover:text-gold uppercase tracking-tight transition-all">Residential Acquisition</span>
+                        <span class="text-[9px] text-white/30 uppercase tracking-[0.3em] font-black group-hover:text-white transition-all">Curated Living Spaces</span>
+                    </div>
+                </button>
+
+                <button class="service-trigger group flex items-center gap-6 text-left w-full" data-service="commercial">
+                    <span class="service-icon text-gold/30 group-hover:text-gold text-4xl font-black step-number transition-all duration-500">02</span>
+                    <div>
+                        <span class="block text-xl font-black text-white/40 group-hover:text-gold uppercase tracking-tight transition-all">Commercial Property Advisory</span>
+                        <span class="text-[9px] text-white/30 uppercase tracking-[0.3em] font-black group-hover:text-white transition-all">Office & Retail Assets</span>
+                    </div>
+                </button>
+
+                <button class="service-trigger group flex items-center gap-6 text-left w-full" data-service="industrial">
+                    <span class="service-icon text-gold/30 group-hover:text-gold text-4xl font-black step-number transition-all duration-500">03</span>
+                    <div>
+                        <span class="block text-xl font-black text-white/40 group-hover:text-gold uppercase tracking-tight transition-all">Industrial Property Solutions</span>
+                        <span class="text-[9px] text-white/30 uppercase tracking-[0.3em] font-black group-hover:text-white transition-all">Warehousing & Logistics</span>
+                    </div>
+                </button>
+
+                <button class="service-trigger group flex items-center gap-6 text-left w-full" data-service="investment">
+                    <span class="service-icon text-gold/30 group-hover:text-gold text-4xl font-black step-number transition-all duration-500">04</span>
+                    <div>
+                        <span class="block text-xl font-black text-white/40 group-hover:text-gold uppercase tracking-tight transition-all">Investment Advisory</span>
+                        <span class="text-[9px] text-white/30 uppercase tracking-[0.3em] font-black group-hover:text-white transition-all">High-Yield Performance</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <div class="lg:col-span-7 h-[500px] md:h-[650px] relative reveal delay-500">
+            
+            <div class="absolute inset-0 hover:grayscale-0 transition-all duration-1000 overflow-hidden rounded-sm border border-white/10 p-2">
+                <div class="absolute inset-0 bg-navy/20 z-10"></div>
+                
+                <img id="image-residential" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1600" 
+                     alt="Residential Acquisition Demonstration" 
+                     class="service-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100 z-1">
+
+                <img id="image-commercial" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1600" 
+                     alt="Commercial Property Advisory Demonstration" 
+                     class="service-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0 z-0">
+
+                <img id="image-industrial" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1600" 
+                     alt="Industrial Property Solutions Demonstration" 
+                     class="service-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0 z-0">
+
+                <img id="image-investment" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1600" 
+                     alt="Real Estate Investment Advisory Demonstration" 
+                     class="service-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0 z-0">
+                
+                <div class="absolute bottom-6 right-6 bg-gold/90 border border-white/20 p-5 backdrop-blur-md shadow-2xl z-20 reveal">
+                    <iconify-icon icon="solar:shield-up-bold-duotone" class="text-navy text-4xl mb-2"></iconify-icon>
+                    <p class="text-[9px] font-black text-navy uppercase tracking-[0.3em]">Institutional <br>Grade Assets</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="protocol" class="py-24 px-6 bg-navy border-t border-white/5">
+    <div class="max-w-7xl mx-auto">
+        
+        <!-- Section Header -->
+        <div class="mb-16 reveal text-center lg:text-left">
+            <h2 class="text-gold text-[10px] font-black uppercase tracking-[0.8em] mb-4">Our Approach</h2>
+            <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter">
+                The 5-Step <span class="text-white/30">System.</span>
+            </h3>
+        </div>
+
+        <!-- 5-Step Process Card Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+            
+            <!-- Step 1 -->
+            <div class="group p-8 border border-white/5 bg-white/[0.02] hover:border-gold/50 transition-all duration-500 reveal delay-100">
+                <span class="block text-4xl font-black text-white/10 mb-6 group-hover:text-gold transition-colors uppercase">01</span>
+                <h4 class="text-white text-sm font-black uppercase tracking-widest mb-3">Understand</h4>
+                <p class="text-[11px] text-white/40 uppercase leading-relaxed font-medium">
+                    We listen to your goals, budget, and exactly what you are looking for in a property.
+                </p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="group p-8 border border-white/5 bg-white/[0.02] hover:border-gold/50 transition-all duration-500 reveal delay-200">
+                <span class="block text-4xl font-black text-white/10 mb-6 group-hover:text-gold transition-colors uppercase">02</span>
+                <h4 class="text-white text-sm font-black uppercase tracking-widest mb-3">Curate</h4>
+                <p class="text-[11px] text-white/40 uppercase leading-relaxed font-medium">
+                    We search the market and pick out only the best options that fit your specific needs.
+                </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="group p-8 border border-white/5 bg-white/[0.02] hover:border-gold/50 transition-all duration-500 reveal delay-300">
+                <span class="block text-4xl font-black text-white/10 mb-6 group-hover:text-gold transition-colors uppercase">03</span>
+                <h4 class="text-white text-sm font-black uppercase tracking-widest mb-3">Verify</h4>
+                <p class="text-[11px] text-white/40 uppercase leading-relaxed font-medium">
+                    We do the dirty work—checking titles, documents, and the property to ensure everything is legit.
+                </p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="group p-8 border border-white/5 bg-white/[0.02] hover:border-gold/50 transition-all duration-500 reveal delay-400">
+                <span class="block text-4xl font-black text-white/10 mb-6 group-hover:text-gold transition-colors uppercase">04</span>
+                <h4 class="text-white text-sm font-black uppercase tracking-widest mb-3">Structure</h4>
+                <p class="text-[11px] text-white/40 uppercase leading-relaxed font-medium">
+                    We handle the paperwork and payment plans to make sure the deal is solid and safe.
+                </p>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="group p-8 border border-white/5 bg-white/[0.02] hover:border-gold/50 transition-all duration-500 reveal delay-500">
+                <span class="block text-4xl font-black text-white/10 mb-6 group-hover:text-gold transition-colors uppercase">05</span>
+                <h4 class="text-white text-sm font-black uppercase tracking-widest mb-3">Secure</h4>
+                <p class="text-[11px] text-white/40 uppercase leading-relaxed font-medium">
+                    Final handover. We deliver the keys and the documents. The property is officially yours.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Call to Action -->
+        <div class="mt-16 flex flex-col md:flex-row items-center justify-between gap-6 py-8 border-y border-white/5 reveal">
+            <p class="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">Built for safety. Designed for results.</p>
+            <a href="https://wa.me/8123153391" class="text-gold font-black text-[10px] uppercase tracking-[0.4em] flex items-center gap-2 group hover:text-white transition-all">
+                Learn More About Our Process
+                <iconify-icon icon="solar:arrow-right-bold" class="group-hover:translate-x-2 transition-transform"></iconify-icon>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<section id="advisory" class="py-32 px-6 bg-white text-navy">
+    <div class="max-w-7xl mx-auto">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            
+            <div class="lg:col-span-4 space-y-8 reveal">
+                <div>
+                    <h2 class="text-gold text-[10px] font-black uppercase tracking-[0.8em] mb-4">Why TEDD?</h2>
+                    <h3 class="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none">
+                        The Standard <br> <span class="text-gold/40">of Trust.</span>
+                    </h3>
+                </div>
+                <p class="text-navy/60 text-sm font-medium uppercase tracking-widest leading-relaxed">
+                    We don't just sell houses; we secure your future with a process that leaves no room for doubt.
+                </p>
+                <div class="pt-6">
+                    <a href="https://wa.me/8123153391" class="inline-flex items-center gap-4 group">
+                        <iconify-icon icon="solar:shield-check-bold-duotone" class="text-gold text-2xl"></iconify-icon>
+                        <span class="text-[10px] font-black uppercase tracking-[0.3em]">Start a Conversation</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                <div class="p-10 border border-navy/5 bg-bone/30 rounded-sm reveal delay-100 group hover:bg-navy hover:text-white transition-all duration-500">
+                    <iconify-icon icon="solar:verified-check-bold-duotone" class="text-gold text-4xl mb-6"></iconify-icon>
+                    <h4 class="text-xl font-black uppercase tracking-tight mb-3">Verified Properties</h4>
+                    <p class="text-[11px] opacity-60 uppercase font-bold leading-relaxed tracking-wide">
+                        Every listing on our desk has been double-checked for genuine titles and clean documentation. No surprises.
+                    </p>
+                </div>
+
+                <div class="p-10 border border-navy/5 bg-bone/30 rounded-sm reveal delay-200 group hover:bg-navy hover:text-white transition-all duration-500">
+                    <iconify-icon icon="solar:user-hand-up-bold-duotone" class="text-gold text-4xl mb-6"></iconify-icon>
+                    <h4 class="text-xl font-black uppercase tracking-tight mb-3">Client-First Advisory</h4>
+                    <p class="text-[11px] opacity-60 uppercase font-bold leading-relaxed tracking-wide">
+                        We don't push what we want to sell; we find what you actually need based on your lifestyle and budget.
+                    </p>
+                </div>
+
+                <div class="p-10 border border-navy/5 bg-bone/30 rounded-sm reveal delay-300 group hover:bg-navy hover:text-white transition-all duration-500">
+                    <iconify-icon icon="solar:document-text-bold-duotone" class="text-gold text-4xl mb-6"></iconify-icon>
+                    <h4 class="text-xl font-black uppercase tracking-tight mb-3">Transparent Process</h4>
+                    <p class="text-[11px] opacity-60 uppercase font-bold leading-relaxed tracking-wide">
+                        You will see every step of the transaction. Clear communication, no hidden fees, and no "back-door" talk.
+                    </p>
+                </div>
+
+                <div class="p-10 border border-navy/5 bg-bone/30 rounded-sm reveal delay-400 group hover:bg-navy hover:text-white transition-all duration-500">
+                    <iconify-icon icon="solar:chart-square-bold-duotone" class="text-gold text-4xl mb-6"></iconify-icon>
+                    <h4 class="text-xl font-black uppercase tracking-tight mb-3">Strategic Guidance</h4>
+                    <p class="text-[11px] opacity-60 uppercase font-bold leading-relaxed tracking-wide">
+                        We analyze market trends to ensure that any property you buy today will grow in value tomorrow.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+ <section id="tiers" class="py-32 px-6 bg-bone text-navy">
+    <div class="max-w-7xl mx-auto">
+        
+        <div class="mb-20 reveal">
+            <h2 class="text-gold text-[10px] font-black uppercase tracking-[0.8em] mb-4">Service Tiers</h2>
+            <h3 class="text-4xl md:text-6xl font-black uppercase tracking-tighter">Choose Your <span class="text-gold/50">Entry Level.</span></h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="p-10 border border-navy/10 bg-white reveal delay-100 flex flex-col justify-between h-full">
+                <div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-navy/40">Tier 01</span>
+                    <h4 class="text-3xl font-black uppercase tracking-tighter mt-2 mb-6">TEDD Access</h4>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-start gap-3 text-[11px] font-bold uppercase tracking-wide">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-gold text-lg"></iconify-icon>
+                            Verified Standard Listings
+                        </li>
+                        <li class="flex items-start gap-3 text-[11px] font-bold uppercase tracking-wide">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-gold text-lg"></iconify-icon>
+                            General Market Briefings
+                        </li>
+                        <li class="flex items-start gap-3 text-[11px] font-bold uppercase tracking-wide">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-gold text-lg"></iconify-icon>
+                            Basic Legal Guidance
+                        </li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/8123153391" class="block text-center bg-navy text-white py-4 font-black text-[10px] uppercase tracking-widest hover:bg-gold transition-colors">Get Access</a>
+            </div>
+
+            <div class="p-10 border-2 border-gold bg-white shadow-2xl reveal delay-300 relative flex flex-col justify-between h-full">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-navy text-[8px] font-black px-4 py-1 uppercase tracking-widest">Most Preferred</div>
+                <div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-navy/40">Tier 02</span>
+                    <h4 class="text-3xl font-black uppercase tracking-tighter mt-2 mb-6">TEDD Select</h4>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-start gap-3 text-[11px] font-bold uppercase tracking-wide">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-gold text-lg"></iconify-icon>
+                            Priority Off-Market Assets
+                        </li>
+                        <li class="flex items-start gap-3 text-[11px] font-bold uppercase tracking-wide">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-gold text-lg"></iconify-icon>
+                            Detailed ROI Analysis
+                        </li>
+                        <li class="flex items-start gap-3 text-[11px] font-bold uppercase tracking-wide">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-gold text-lg"></iconify-icon>
+                            Dedicated Portfolio Manager
+                        </li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/8123153391" class="block text-center bg-gold text-navy py-4 font-black text-[10px] uppercase tracking-widest hover:bg-navy hover:text-white transition-colors">Contact Expert</a>
+            </div>
+
+            <div class="p-10 border border-navy/10 bg-navy text-white reveal delay-500 flex flex-col justify-between h-full">
+                <div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-white/20">Tier 03</span>
+                    <h4 class="text-3xl font-black uppercase tracking-tighter mt-2 mb-6">TEDD Elite</h4>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-start gap-3 text-[11px] font-bold uppercase tracking-wide">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-gold text-lg"></iconify-icon>
+                            Full-Scale Development Advisory
+                        </li>
+                        <li class="flex items-start gap-3 text-[11px] font-bold uppercase tracking-wide">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-gold text-lg"></iconify-icon>
+                            Institutional SPV Setup
+                        </li>
+                        <li class="flex items-start gap-3 text-[11px] font-bold uppercase tracking-wide">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-gold text-lg"></iconify-icon>
+                            Global Property Sourcing
+                        </li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/8123153391" class="block text-center bg-white text-navy py-4 font-black text-[10px] uppercase tracking-widest hover:bg-gold transition-colors">Private Request</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="why-tedd" class="py-24 px-6 bg-white border-y border-navy/5">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-24">
+            
+            <!-- Point 01 -->
+            <div class="reveal delay-100 flex flex-col items-center md:items-start text-center md:text-left">
+                <div class="w-12 h-12 bg-navy flex items-center justify-center rounded-sm mb-6 shadow-xl shadow-navy/10">
+                    <iconify-icon icon="solar:shield-check-bold" class="text-gold text-2xl"></iconify-icon>
+                </div>
+                <h4 class="text-navy text-lg font-black uppercase tracking-tighter mb-3">Verified Listings</h4>
+                <p class="text-[10px] text-navy/50 font-bold uppercase tracking-widest leading-relaxed">
+                    We skip the noise. Every property is pre-vetted for clean titles and zero legal issues before you see it.
+                </p>
+            </div>
+
+            <!-- Point 02 -->
+            <div class="reveal delay-300 flex flex-col items-center md:items-start text-center md:text-left">
+                <div class="w-12 h-12 bg-gold flex items-center justify-center rounded-sm mb-6 shadow-xl shadow-gold/20">
+                    <iconify-icon icon="solar:chart-2-bold" class="text-navy text-2xl"></iconify-icon>
+                </div>
+                <h4 class="text-navy text-lg font-black uppercase tracking-tighter mb-3">Strategic Advisory</h4>
+                <p class="text-[10px] text-navy/50 font-bold uppercase tracking-widest leading-relaxed">
+                    We don't just sell; we advise. We help you pick assets that have high rental yields and resale value.
+                </p>
+            </div>
+
+            <!-- Point 03 -->
+            <div class="reveal delay-500 flex flex-col items-center md:items-start text-center md:text-left">
+                <div class="w-12 h-12 bg-navy flex items-center justify-center rounded-sm mb-6 shadow-xl shadow-navy/10">
+                    <iconify-icon icon="solar:case-minimalistic-bold" class="text-gold text-2xl"></iconify-icon>
+                </div>
+                <h4 class="text-navy text-lg font-black uppercase tracking-tighter mb-3">Professional Execution</h4>
+                <p class="text-[10px] text-navy/50 font-bold uppercase tracking-widest leading-relaxed">
+                    From first viewing to handing over the keys, we handle the logistics so you don't have to stress.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+    </main>
+
+    <!-- FINAL CTA -->
+<section class="py-32 px-6 bg-navy relative overflow-hidden">
+    <!-- Subtle Background Element -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-[150px] pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10 reveal">
+        <h2 class="text-gold text-[10px] font-black uppercase tracking-[1em] mb-8">Ready to Proceed?</h2>
+        <h3 class="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9] mb-12">
+            Secure Your <br> Next <span class="text-gold">Asset.</span>
+        </h3>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <a href="https://wa.me/8123153391" class="w-full sm:w-auto bg-gold text-navy px-12 py-5 rounded-sm font-black text-[11px] uppercase tracking-[0.2em] hover:bg-white transition-all active:scale-95">
+                Speak with an Advisor
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-navy border-t border-white/5 pt-20 pb-10 px-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20">
+            
+            <!-- Brand Column -->
+            <div class="md:col-span-5 space-y-8">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gold flex items-center justify-center rounded-sm">
+                        <span class="text-navy font-black text-xs">TEDD</span>
+                    </div>
+                    <span class="font-black text-xl text-white uppercase tracking-tighter">TEDD LUXURY</span>
+                </div>
+                <p class="text-white/40 text-[11px] font-bold uppercase tracking-widest leading-relaxed max-w-xs">
+                    Modern real estate advisory & brokerage. Verified opportunities for the strategic investor.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="md:col-span-3 space-y-6">
+                <h4 class="text-white text-[10px] font-black uppercase tracking-[0.4em]">Navigation</h4>
+                <ul class="space-y-4 text-white/30 text-[10px] font-black uppercase tracking-widest">
+                    <li><a href="#hero" class="hover:text-gold transition-colors">Home</a></li>
+                    <li><a href="#about" class="hover:text-gold transition-colors">Profile</a></li>
+                    <li><a href="#services" class="hover:text-gold transition-colors">Services</a></li>
+                    <li><a href="#tiers" class="hover:text-gold transition-colors">Structure</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact/Location -->
+            <div class="md:col-span-4 space-y-6">
+                <h4 class="text-white text-[10px] font-black uppercase tracking-[0.4em]">Operations</h4>
+                <ul class="space-y-4 text-white/30 text-[10px] font-black uppercase tracking-widest">
+                    <li class="flex items-center gap-3">
+                        <iconify-icon icon="solar:map-point-bold" class="text-gold"></iconify-icon>
+                        Lagos • Abuja • Nigeria
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <iconify-icon icon="solar:phone-bold" class="text-gold"></iconify-icon>
+                        +234 812 315 3391
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <iconify-icon icon="solar:letter-bold" class="text-gold"></iconify-icon>
+                        advisory@teddluxury.com
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-[9px] text-white/20 font-bold uppercase tracking-[0.4em]">
+                &copy; 2026 TEDD Luxury Homes. All Rights Reserved.
+            </p>
+            <div class="flex gap-6">
+                <a href="#" class="text-white/20 hover:text-gold transition-colors"><iconify-icon icon="ri:instagram-fill" class="text-xl"></iconify-icon></a>
+                <a href="#" class="text-white/20 hover:text-gold transition-colors"><iconify-icon icon="ri:linkedin-box-fill" class="text-xl"></iconify-icon></a>
+                <a href="#" class="text-white/20 hover:text-gold transition-colors"><iconify-icon icon="ri:twitter-x-fill" class="text-xl"></iconify-icon></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- 1. SELECT ELEMENTS ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+        const line3 = document.getElementById('line3');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const nav = document.getElementById('navbar');
+        
+        // Service Gallery Elements
+        const serviceTriggers = document.querySelectorAll('.service-trigger');
+        const serviceImages = document.querySelectorAll('.service-image');
+
+        // --- 2. MOBILE MENU LOGIC ---
+        function toggleMenu() {
+            mobileMenu.classList.toggle('translate-x-full');
+            // Animate Hamburger to X
+            line1.classList.toggle('rotate-45');
+            line1.classList.toggle('translate-y-2');
+            line2.classList.toggle('opacity-0');
+            line3.classList.toggle('-rotate-45');
+            line3.classList.toggle('-translate-y-2');
+            line3.classList.toggle('w-6'); 
+        }
+
+        if(menuToggle) {
+            menuToggle.addEventListener('click', toggleMenu);
+        }
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (!mobileMenu.classList.contains('translate-x-full')) toggleMenu();
+            });
+        });
+
+        // --- 3. SERVICES GALLERY HOVER LOGIC ---
+        serviceTriggers.forEach(trigger => {
+            trigger.addEventListener('mouseenter', function() {
+                const target = this.dataset.service;
+
+                // Reset all triggers styles
+                serviceTriggers.forEach(t => {
+                    const heading = t.querySelector('.text-xl');
+                    const icon = t.querySelector('.service-icon');
+                    heading.classList.add('text-white/40');
+                    heading.classList.remove('text-gold');
+                    icon.classList.add('text-gold/30');
+                    icon.classList.remove('text-gold');
+                });
+
+                // Highlight active trigger
+                const currentHeading = this.querySelector('.text-xl');
+                const currentIcon = this.querySelector('.service-icon');
+                currentHeading.classList.remove('text-white/40');
+                currentHeading.classList.add('text-gold');
+                currentIcon.classList.remove('text-gold/30');
+                currentIcon.classList.add('text-gold');
+
+                // Swap Images
+                serviceImages.forEach(img => {
+                    img.classList.replace('opacity-100', 'opacity-0');
+                    img.classList.replace('z-1', 'z-0');
+                });
+
+                const currentImage = document.getElementById('image-' + target);
+                currentImage.classList.replace('opacity-0', 'opacity-100');
+                currentImage.classList.replace('z-0', 'z-1');
+            });
+        });
+
+        // --- 4. SCROLL REVEAL LOGIC ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Force Hero to show immediately
+        document.querySelectorAll('#hero .reveal').forEach(el => el.classList.add('active'));
+
+        // --- 5. NAVBAR SCROLL EFFECT ---
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-navy/90', 'backdrop-blur-xl', 'border-b', 'border-white/5');
+            } else {
+                nav.classList.remove('bg-navy/90', 'backdrop-blur-xl', 'border-b', 'border-white/5');
+            }
+        });
+    });
+</script>
+</body>
+</html>
